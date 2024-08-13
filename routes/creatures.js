@@ -69,16 +69,21 @@ router.patch('/:id', async (req, res) => {
 // Delete a creature by ID
 router.delete('/:id', async (req, res) => {
   try {
-    const creature = await Creature.findById(req.params.id);
-    if (!creature) {
-      return res.status(404).send('Creature not found');
+    // Find and delete the creature by ID
+    const result = await Creature.findByIdAndDelete(req.params.id);
+
+    // If the creature is not found, return a 404 error
+    if (!result) {
+      return res.status(404).json({ message: 'Creature not found' });
     }
 
-    await creature.remove();
-    res.json({ message: 'Creature deleted' });
+    // Send a response confirming the deletion
+    res.status(200).json({ message: 'Creature deleted successfully' });
   } catch (err) {
-    res.status(500).send('Error: ' + err);
+    // Handle any errors that occur during the process
+    res.status(500).json({ message: 'Error: ' + err.message });
   }
 });
+
 
 module.exports = router;

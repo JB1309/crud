@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-//const creatureRoutes = require('./routes/creatures'); // Adjust the path as needed
+const creatureRoutes = require('./routes/creatures'); // Uncomment this if you have the routes file ready
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/creaturedb', {
 .catch(err => console.error('MongoDB connection error:', err));
 
 // Use creature routes
-//app.use('/creatures', creatureRoutes);
+app.use('/creatures', creatureRoutes); // Uncomment this if you have the routes file ready
 
 // Error handling middleware
 app.use((err, req, res, next) => {
