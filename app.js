@@ -10,7 +10,8 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/creaturedb', {
+//mongoose.connect('mongodb://localhost:27017,{
+mongoose.connect('mongodb://localhost:27020,localhost:27021,localhost:27022/cbit2?replicaSet=m101', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
